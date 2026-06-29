@@ -144,18 +144,6 @@ window.GAMES = [
     url: "#"
   },
   {
-    id: "treasure-tetris",
-    title: "Treasure Stacks",
-    category: "Puzzle",
-    tags: ["blocks", "stacking", "casual"],
-    blurb: "Stack the loot into the hold before it overflows.",
-    year: 2022,
-    plays: 528300,
-    accent: "#a78bfa",
-    glyph: "💰",
-    url: "#"
-  },
-  {
     id: "galleon-wars",
     title: "Galleon Wars",
     category: "Strategy",
@@ -165,18 +153,6 @@ window.GAMES = [
     plays: 67400,
     accent: "#34d399",
     glyph: "🚢",
-    url: "#"
-  },
-  {
-    id: "parrot-pop",
-    title: "Parrot Pop",
-    category: "Puzzle",
-    tags: ["match-3", "color", "casual"],
-    blurb: "Match feathers, free the flock, chase the high score.",
-    year: 2024,
-    plays: 245100,
-    accent: "#22d3ee",
-    glyph: "🦜",
     url: "#"
   },
   {
@@ -204,18 +180,6 @@ window.GAMES = [
     url: "#"
   },
   {
-    id: "doubloon-dash",
-    title: "Doubloon Dash",
-    category: "Platformer",
-    tags: ["jump", "collect", "speedrun"],
-    blurb: "Grab every coin across crumbling docks against the clock.",
-    year: 2024,
-    plays: 199050,
-    accent: "#fbbf24",
-    glyph: "🪙",
-    url: "#"
-  },
-  {
     id: "reef-racer",
     title: "Reef Racer",
     category: "Racing",
@@ -237,18 +201,6 @@ window.GAMES = [
     plays: 88200,
     accent: "#e879f9",
     glyph: "🌀",
-    url: "#"
-  },
-  {
-    id: "anchor-drop",
-    title: "Anchor Drop",
-    category: "Puzzle",
-    tags: ["physics", "ragdoll", "casual"],
-    blurb: "Drop the anchor through a maze of chains and currents.",
-    year: 2023,
-    plays: 176400,
-    accent: "#94a3b8",
-    glyph: "⚓",
     url: "#"
   }
 ];

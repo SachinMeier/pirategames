@@ -118,6 +118,7 @@
       position: relative; text-decoration: none; color: inherit; border-radius: 10px; overflow: hidden;
       background: var(--panel); border: 1px solid var(--line); backdrop-filter: blur(8px);
       transition: transform .3s cubic-bezier(.2,.7,.3,1), border-color .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
     }
     .card:hover { transform: translateY(-5px); border-color: rgba(34,211,238,.5); box-shadow: 0 14px 40px -14px var(--glow); }
     .thumb { aspect-ratio: 16/10; position: relative; display: grid; place-items: center; }
@@ -127,14 +128,13 @@
     }
     .thumb .glyph { font-size: 46px; filter: drop-shadow(0 0 12px currentColor); position: relative; z-index: 1; }
     .thumb .ring { position: absolute; top: 12px; right: 12px; font-family: "Chakra Petch", monospace; font-size: 10px; letter-spacing: .12em; color: var(--gold); border: 1px solid rgba(232,181,74,.45); padding: 3px 7px; border-radius: 4px; z-index: 1; backdrop-filter: blur(2px); }
-    .card .body { padding: 16px 16px 18px; position: relative; }
+    .card .body { padding: 16px 16px 18px; position: relative; flex: 1; display: flex; flex-direction: column; }
     .card h3 { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .02em; }
     .card .blurb { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin: 8px 0 14px; min-height: 40px; }
     .card .meta { display: flex; align-items: center; justify-content: space-between; font-family: "Chakra Petch", monospace; font-size: 11px; letter-spacing: .08em; }
     .card .cat { color: var(--cyan); }
-    .card .plays { color: var(--muted); }
     .card .launch {
-      margin-top: 14px; display: flex; align-items: center; justify-content: space-between;
+      margin-top: auto; display: flex; align-items: center; justify-content: space-between;
       font-family: "Chakra Petch", sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; transition: color .2s;
     }
@@ -220,10 +220,6 @@
       </div>
     </section>
 
-    <footer>
-      <span>PIRATE GAMES · STATIC BUILD</span>
-      <span><span class="on">●</span> ALL HANDS NOMINAL</span>
-    </footer>
   </div>
 
   <script src="../data/games.js"></script>
@@ -238,8 +234,7 @@
 
     filtersEl.innerHTML = cats.map(c =>
       `<button class="chip" data-cat="${c}" aria-pressed="${c==='All'}">${c}</button>`
-    ).join('') + `<span class="count mono" id="count"></span>`;
-    const countEl = document.getElementById('count');
+    ).join('');
 
     document.getElementById('stat-games').textContent = GAMES.length;
     document.getElementById('stat-cats').textContent = new Set(GAMES.map(g => g.category)).size;
@@ -261,7 +256,6 @@
         const hay = (g.title + ' ' + g.category + ' ' + g.tags.join(' ') + ' ' + g.blurb).toLowerCase();
         return catOk && (!q || hay.includes(q));
       });
-      countEl.innerHTML = `<b>${list.length}</b> / ${GAMES.length} ONLINE`;
       if (!list.length) {
         grid.innerHTML = `<div class="empty"><b>NO SIGNAL</b>Nothing matches “${query}”. Adjust your query.</div>`;
         return;
@@ -278,7 +272,7 @@
           <div class="body">
             <h3>${g.title}</h3>
             <p class="blurb">${g.blurb}</p>
-            <div class="meta"><span class="cat">${g.category}</span><span class="plays">${fmt(g.plays)} plays</span></div>
+            <div class="meta"><span class="cat">${g.category}</span></div>
             <div class="launch"><span>${soon ? 'Coming soon' : 'Launch'}</span><span>${soon ? '◷' : '→'}</span></div>
           </div>
         </${tag}>`;
