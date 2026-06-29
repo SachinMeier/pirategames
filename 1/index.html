@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirate Games — Retro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a1d38;        /* deep ocean blue */
+      --panel: #0f2748;     /* lighter ocean panel */
+      --ink: #f0e7cf;       /* parchment / bone text */
+      --muted: #93a7c9;     /* faded blue-grey */
+      --crimson: #c23a29;   /* flag red — action */
+      --wood: #a06a35;      /* oak plank — frames */
+      --gold: #e8b54a;      /* treasure gold — highlights */
+      --sea: #4fa890;       /* muted sea-green — accents */
+      --line: #24385c;
+      --grid-line: rgba(120,165,225,.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scrollbar-color: var(--wood) var(--bg); }
+    body {
+      background:
+        radial-gradient(1000px 520px at 50% -12%, rgba(232,181,74,.06), transparent 60%),
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 36px 36px, 36px 36px, auto;
+      color: var(--ink);
+      font-family: "Oxanium", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 1.5;
+      min-height: 100vh; overflow-x: hidden;
+    }
+
+    .shell { max-width: 1180px; margin: 0 auto; padding: 0 20px 80px; }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      padding: 28px 0 22px;
+    }
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo .mark {
+      width: 46px; height: 46px; display: grid; place-items: center;
+      background: var(--crimson); border: 3px solid #06101f;
+      box-shadow: 4px 4px 0 var(--wood); font-size: 22px;
+    }
+    .logo h1 {
+      font-family: "Press Start 2P", monospace; font-size: 16px; line-height: 1.45;
+      color: var(--gold); text-shadow: 2px 2px 0 var(--crimson);
+    }
+    nav { display: flex; gap: 0; border: 3px solid var(--wood); }
+    nav button, nav a.home {
+      font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 13px;
+      letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+      background: transparent; color: var(--ink); border: 0; cursor: pointer;
+      padding: 13px 20px; border-right: 3px solid var(--wood); display: flex; align-items: center;
+      transition: background .18s ease, color .18s ease;
+    }
+    nav button:last-child { border-right: 0; }
+    nav button:hover, nav a.home:hover { background: var(--wood); color: #1a1208; }
+    nav button[aria-current="true"] { background: var(--crimson); color: #fff; }
+    nav a.home { color: var(--gold); }
+
+    /* ---------- Search + filters ---------- */
+    .controls { margin-top: 16px; }
+    .searchbar {
+      display: flex; align-items: stretch; border: 3px solid var(--wood);
+      background: var(--panel); box-shadow: 6px 6px 0 rgba(60,38,18,.5);
+    }
+    .searchbar .tag {
+      font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .14em;
+      text-transform: uppercase; color: #1a1208; background: var(--wood);
+      display: grid; place-items: center; padding: 0 18px;
+    }
+    .searchbar input {
+      flex: 1; background: transparent; border: 0; color: var(--ink);
+      font-family: "Oxanium", sans-serif; font-size: 17px; padding: 14px 16px; outline: none;
+    }
+    .searchbar input::placeholder { color: #5d7299; }
+    .searchbar input:focus { background: rgba(232,181,74,.06); }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+    .chip {
+      font-family: "Oxanium", sans-serif; font-weight: 600; font-size: 12px;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 9px 15px; background: transparent; color: var(--ink);
+      border: 2px solid var(--wood); cursor: pointer; transition: .18s ease;
+    }
+    .chip:hover { color: var(--gold); border-color: var(--gold); }
+    .chip[aria-pressed="true"] { background: var(--gold); color: #1a1208; border-color: var(--gold); }
+    .count { margin-left: auto; color: var(--sea); font-weight: 600; font-size: 14px; letter-spacing: .04em; }
+
+    /* ---------- Grid ---------- */
+    .grid {
+      margin-top: 30px; display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+    }
+    .card {
+      background: var(--panel); border: 3px solid var(--wood); text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; position: relative;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--crimson); border-color: var(--gold); }
+    .thumb {
+      aspect-ratio: 4/3; display: grid; place-items: center; position: relative;
+      border-bottom: 3px solid var(--wood);
+    }
+    .thumb .glyph { font-size: 56px; }
+    .card .body { padding: 16px 16px 18px; flex: 1; display: flex; flex-direction: column; }
+    .card h3 { font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .01em; }
+    .card .blurb { color: var(--muted); font-size: 14px; line-height: 1.5; margin: 8px 0 14px; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    .card .cat { color: #1a1208; background: var(--sea); padding: 3px 9px; font-weight: 700; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .card .plays { color: var(--gold); font-weight: 600; }
+    .card .play {
+      margin-top: 14px; text-align: center; font-family: "Oxanium", sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+      padding: 12px; background: var(--crimson); color: #fff; border: 2px solid #06101f;
+      transition: background .18s ease, color .18s ease;
+    }
+    .card:hover .play { background: var(--gold); color: #1a1208; }
+
+    /* coming soon */
+    .card.is-soon { cursor: default; }
+    .card.is-soon:hover { transform: none; box-shadow: 6px 6px 0 rgba(60,38,18,.45); border-color: var(--wood); }
+    .card.is-soon .thumb { filter: grayscale(.4) brightness(.82); }
+    .card.is-soon .play { background: transparent; color: var(--gold); border: 2px dashed var(--gold); }
+    .card .soon-tag {
+      position: absolute; top: 10px; left: 10px; z-index: 3;
+      font-family: "Oxanium", sans-serif; font-weight: 800; font-size: 11px;
+      letter-spacing: .12em; text-transform: uppercase; color: #1a1208;
+      background: var(--gold); padding: 6px 10px; border: 2px solid #1a1208;
+    }
+
+    .empty {
+      grid-column: 1/-1; text-align: center; padding: 70px 20px; border: 2px dashed var(--line);
+      color: var(--muted); font-size: 16px;
+    }
+    .empty .pixel { color: var(--gold); font-family: "Oxanium", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: .04em; display: block; margin-bottom: 12px; }
+
+    /* ---------- About ---------- */
+    .about { display: none; margin-top: 30px; border: 3px solid var(--wood); background: var(--panel); box-shadow: 8px 8px 0 rgba(194,58,41,.28); }
+    .about .bar { background: var(--wood); color: #1a1208; font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; padding: 13px 20px; }
+    .about .inner { padding: 30px clamp(20px,4vw,46px) 38px; }
+    .about h2 { font-family: "Oxanium", sans-serif; font-weight: 800; font-size: clamp(28px,5vw,40px); color: var(--gold); text-shadow: 2px 2px 0 var(--crimson); margin-bottom: 18px; letter-spacing: .01em; }
+    .about p { font-size: 16px; line-height: 1.7; color: #cdd9ee; max-width: 60ch; margin-bottom: 14px; }
+    .about .insert { color: var(--sea); font-weight: 700; font-size: 14px; letter-spacing: .04em; margin-top: 22px; }
+
+    body[data-view="about"] .grid, body[data-view="about"] .controls { display: none; }
+    body[data-view="about"] .about { display: block; }
+
+    footer {
+      margin-top: 56px; padding-top: 22px; border-top: 2px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between;
+      font-size: 13px; color: var(--muted); letter-spacing: .04em;
+    }
+    footer .pixel { font-family: "Oxanium", sans-serif; font-weight: 700; color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .logo h1 { font-size: 12px; }
+      nav button, nav a.home { padding: 12px 13px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body data-view="games">
+  <div class="shell">
+    <header>
+      <div class="logo">
+        <div class="mark">🏴‍☠️</div>
+        <h1>PIRATE<br>GAMES</h1>
+      </div>
+      <nav>
+        <a class="home" href="../">⌂ HOME</a>
+        <button data-nav="games" aria-current="true">GAMES</button>
+        <button data-nav="about">ABOUT</button>
+      </nav>
+    </header>
+
+    <section class="controls">
+      <div class="searchbar">
+        <span class="tag">FIND</span>
+        <input id="search" type="search" placeholder="Search a title, tag or category…" autocomplete="off" />
+      </div>
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <main class="grid" id="grid"></main>
+
+    <section class="about" aria-hidden="true">
+      <div class="bar">⚓ About</div>
+      <div class="inner">
+        <h2>Welcome aboard</h2>
+        <p>Pirate Games is a hand-picked collection of browser games — pick one, hit play, no downloads, no logins, no nonsense.</p>
+        <p>Every game runs right in your browser and loads fast. The catalogue is small on purpose: only games worth your time make the cut.</p>
+        <p class="insert">Pick a game and set sail →</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Pirate Games — all hands on deck</span>
+      <span class="pixel">Set sail →</span>
+    </footer>
+  </div>
+
+  <script src="../data/games.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const filtersEl = document.getElementById('filters');
+    const fmt = n => n >= 1000 ? (n/1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/,'') + 'K' : '' + n;
+
+    const cats = ['All', ...Array.from(new Set(GAMES.map(g => g.category))).sort()];
+    let activeCat = 'All', query = '';
+
+    filtersEl.innerHTML = cats.map(c =>
+      `<button class="chip" data-cat="${c}" aria-pressed="${c==='All'}">${c.toUpperCase()}</button>`
+    ).join('') + `<span class="count" id="count"></span>`;
+    const countEl = document.getElementById('count');
+
+    function thumb(g) {
+      const a = g.accent;
+      // wooden crate: plank grain + a faint glow of the game's accent behind the glyph
+      return `<div class="thumb" style="background:
+        radial-gradient(circle at 50% 40%, ${a}3a, transparent 60%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.14) 0 1px, transparent 1px 14px),
+        linear-gradient(180deg, #936037, #5e3c1f);">
+        <span class="glyph">${g.glyph}</span></div>`;
+    }
+
+    function render() {
+      const q = query.trim().toLowerCase();
+      const list = GAMES.filter(g => {
+        const catOk = activeCat === 'All' || g.category === activeCat;
+        const hay = (g.title + ' ' + g.category + ' ' + g.tags.join(' ') + ' ' + g.blurb).toLowerCase();
+        return catOk && (!q || hay.includes(q));
+      });
+      countEl.textContent = list.length + (list.length === 1 ? ' GAME' : ' GAMES');
+      if (!list.length) {
+        grid.innerHTML = `<div class="empty"><span class="pixel">Empty nets</span>No games match “${query}”. Try another search.</div>`;
+        return;
+      }
+      grid.innerHTML = list.map(g => {
+        const soon = !!g.soon;
+        const ext = !soon && g.url && g.url !== '#';
+        const tag = soon ? 'div' : 'a';
+        const attrs = soon ? '' : ` href="${g.url}"${ext ? ' target="_blank" rel="noopener"' : ''}`;
+        return `
+        <${tag} class="card${soon ? ' is-soon' : ''}"${attrs}>
+          ${soon ? '<span class="soon-tag">Coming Soon</span>' : ''}
+          ${thumb(g)}
+          <div class="body">
+            <h3>${g.title}</h3>
+            <p class="blurb">${g.blurb}</p>
+            <div class="meta"><span class="cat">${g.category}</span><span class="plays">▶ ${fmt(g.plays)}</span></div>
+            <div class="play">${soon ? 'Coming Soon' : 'Play ▶'}</div>
+          </div>
+        </${tag}>`;
+      }).join('');
+    }
+
+    filtersEl.addEventListener('click', e => {
+      const btn = e.target.closest('.chip'); if (!btn) return;
+      activeCat = btn.dataset.cat;
+      filtersEl.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === btn));
+      render();
+    });
+    search.addEventListener('input', e => { query = e.target.value; render(); });
+
+    document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => {
+      document.body.dataset.view = b.dataset.nav;
+      document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-current', x === b));
+    }));
+
+    render();
+  </script>
+</body>
+</html>

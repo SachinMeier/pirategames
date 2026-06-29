@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirate Games — Style Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #12151d;
+      --ink: #e8eaf0;
+      --muted: #8a90a3;
+      --line: #232838;
+      --accent: #58e0c4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Space Grotesk", sans-serif;
+      min-height: 100vh;
+      padding: clamp(24px, 6vw, 80px);
+      background-image: radial-gradient(circle at 20% 0%, rgba(88,224,196,.06), transparent 45%),
+                        radial-gradient(circle at 90% 100%, rgba(120,140,255,.06), transparent 45%);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    .eyebrow {
+      font-family: "Space Mono", monospace;
+      font-size: 13px; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1 {
+      font-size: clamp(40px, 8vw, 88px);
+      line-height: .98; font-weight: 700; letter-spacing: -.02em;
+      margin: 18px 0 20px;
+    }
+    .lede { color: var(--muted); font-size: clamp(16px, 2vw, 19px); max-width: 60ch; line-height: 1.6; }
+    .grid {
+      margin-top: clamp(40px, 6vw, 72px);
+      display: grid; gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    a.card {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 26px 24px 22px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      position: relative; overflow: hidden;
+    }
+    a.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    a.card .num {
+      font-family: "Space Mono", monospace;
+      font-size: 13px; color: var(--muted); letter-spacing: .2em;
+    }
+    a.card h2 { font-size: 24px; margin: 14px 0 8px; letter-spacing: -.01em; }
+    a.card p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+    a.card .swatch {
+      display: flex; gap: 7px; margin-top: 18px;
+    }
+    a.card .swatch i { width: 22px; height: 22px; border-radius: 4px; display: block; }
+    a.card .go {
+      margin-top: 20px; font-family: "Space Mono", monospace; font-size: 13px;
+      color: var(--accent); letter-spacing: .1em;
+    }
+    footer {
+      margin-top: clamp(48px, 7vw, 90px);
+      padding-top: 22px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 13px; font-family: "Space Mono", monospace;
+      display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Catalogue · Style Review</p>
+    <h1>Pirate Games</h1>
+    <p class="lede">
+      A static game catalogue for GitHub Pages — clean, fast, no server. Below are two
+      design directions for the same content. Open each, try the search and category
+      filters, and tell me which way to take it.
+    </p>
+
+    <div class="grid">
+      <a class="card" href="./1/">
+        <span class="num">01 / DIRECTION</span>
+        <h2>Retro Arcade</h2>
+        <p>Deep-sea blue with oak-plank frames. Treasure gold, crimson and parchment — pixel roots, dialed back.</p>
+        <span class="swatch">
+          <i style="background:#0a1d38;border:1px solid #2a3350"></i><i style="background:#a06a35"></i>
+          <i style="background:#e8b54a"></i><i style="background:#c23a29"></i>
+        </span>
+        <div class="go">Enter cabinet →</div>
+      </a>
+
+      <a class="card" href="./2/">
+        <span class="num">02 / DIRECTION</span>
+        <h2>Ship's Helm</h2>
+        <p>Crisp sci-fi HUD with neon glow, warmed by teak panels and brass fittings. Glass over wood.</p>
+        <span class="swatch">
+          <i style="background:#22d3ee"></i><i style="background:#e8b54a"></i>
+          <i style="background:#5e3d22"></i><i style="background:#0e1726"></i>
+        </span>
+        <div class="go">Open console →</div>
+      </a>
+    </div>
+
+    <footer>
+      <span>pirategames · static site</span>
+      <span>edit the catalogue in data/games.js</span>
+    </footer>
+  </div>
+</body>
+</html>
