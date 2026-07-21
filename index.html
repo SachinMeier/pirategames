@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pirate Games</title>
+  <meta name="description" content="A fleet of fun browser games" />
+  <link rel="canonical" href="https://pirategames.org/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pirate Games" />
+  <meta property="og:title" content="Pirate Games" />
+  <meta property="og:description" content="A fleet of fun browser games" />
+  <meta property="og:url" content="https://pirategames.org/" />
+  <meta property="og:image" content="https://pirategames.org/images/pirate-logo.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pirate Games" />
+  <meta name="twitter:description" content="A fleet of fun browser games" />
   <link rel="icon" type="image/svg+xml" href="./images/pirate-logo.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <link rel="icon" href="./images/favicon.ico" />
@@ -245,9 +256,10 @@
       }).join('');
     }
 
-    // Load the catalogue (cache-busted in local dev), then render.
+    // Always load the catalogue fresh (it's tiny, ~4KB) so a stale CDN/browser
+    // copy can never point cards at the wrong thumbnails — in dev or production.
     const s = document.createElement('script');
-    s.src = bust('data/games.js');
+    s.src = 'data/games.js?t=' + Date.now();
     s.onload = renderGames;
     document.head.appendChild(s);
   </script>
