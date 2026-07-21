@@ -28,6 +28,7 @@ window.GAMES = [
     plays: 4200,
     accent: "#e8b54a",
     glyph: "📜",
+    thumb: "images/games/pirate-scrabble.png",
     url: "https://piratescrabble.com"
   },
   {
@@ -40,7 +41,8 @@ window.GAMES = [
     plays: 1800,
     accent: "#2dd4bf",
     glyph: "📡",
-    url: "https://sachinmeier.github.io/sonar/"
+    thumb: "images/games/sonar.svg",
+    url: "https://sonar.pirategames.org"
   },
   {
     id: "orbit",
@@ -52,6 +54,7 @@ window.GAMES = [
     plays: 2600,
     accent: "#8b8cf8",
     glyph: "🚀",
+    thumb: "images/games/orbit-cover.png",
     url: "https://orbit.pirategames.org",
     soon: true
   },
@@ -65,6 +68,7 @@ window.GAMES = [
     plays: 3100,
     accent: "#38bdf8",
     glyph: "🔢",
+    thumb: "images/games/lumon.png",
     url: "https://severance.pirategames.org",
     soon: true
   },
@@ -86,7 +90,7 @@ window.GAMES = [
     title: "GeoLearn",
     category: "Trivia",
     tags: ["geography", "trivia", "quiz", "learning", "maps", "countries"],
-    blurb: "Test your knowledge of the world, one map at a time.",
+    blurb: "Test your knowledge of geography.",
     year: 2025,
     plays: 0,
     accent: "#34d399",
@@ -98,109 +102,12 @@ window.GAMES = [
     title: "Sophism",
     category: "Trivia",
     tags: ["trivia", "quiz", "philosophy", "logic", "knowledge"],
-    blurb: "Outwit your rivals with logic, rhetoric, and a little misdirection.",
+    blurb: "Practice trivia about architecture, military history, and art.",
     year: 2025,
     plays: 0,
     accent: "#f472b6",
     glyph: "🧠",
+    thumb: "images/games/sophism.jpg",
     url: "https://sophism.pirategames.org"
-  },
-
-  // ----- Example / placeholder games (swap or remove as the real catalogue grows) -----
-  {
-    id: "cannon-cove",
-    title: "Cannon Cove",
-    category: "Action",
-    tags: ["artillery", "aim", "physics"],
-    blurb: "Angle your cannons and blast rival ships out of the cove.",
-    year: 2024,
-    plays: 184200,
-    accent: "#ff2e63",
-    glyph: "💥",
-    url: "#"
-  },
-  {
-    id: "kraken-dive",
-    title: "Kraken Dive",
-    category: "Arcade",
-    tags: ["endless", "underwater", "reflex"],
-    blurb: "Dive deeper than any diver dared and dodge the tentacles.",
-    year: 2025,
-    plays: 92750,
-    accent: "#08d9d6",
-    glyph: "🐙",
-    url: "#"
-  },
-  {
-    id: "plank-runner",
-    title: "Plank Runner",
-    category: "Arcade",
-    tags: ["endless", "runner", "reflex"],
-    blurb: "Sprint the plank, leap the gaps, never look down.",
-    year: 2023,
-    plays: 311900,
-    accent: "#fcd34d",
-    glyph: "🏃",
-    url: "#"
-  },
-  {
-    id: "galleon-wars",
-    title: "Galleon Wars",
-    category: "Strategy",
-    tags: ["fleet", "tactics", "turn-based"],
-    blurb: "Command a fleet and rule the trade routes.",
-    year: 2025,
-    plays: 67400,
-    accent: "#34d399",
-    glyph: "🚢",
-    url: "#"
-  },
-  {
-    id: "cutlass-clash",
-    title: "Cutlass Clash",
-    category: "Action",
-    tags: ["fighting", "duel", "versus"],
-    blurb: "Parry, riposte, and out-duel the deadliest buccaneers.",
-    year: 2023,
-    plays: 158600,
-    accent: "#f97316",
-    glyph: "⚔️",
-    url: "#"
-  },
-  {
-    id: "tide-tactics",
-    title: "Tide Tactics",
-    category: "Strategy",
-    tags: ["grid", "turn-based", "tactics"],
-    blurb: "Read the tides and outmaneuver the navy on a hex sea.",
-    year: 2025,
-    plays: 43800,
-    accent: "#60a5fa",
-    glyph: "🧭",
-    url: "#"
-  },
-  {
-    id: "reef-racer",
-    title: "Reef Racer",
-    category: "Racing",
-    tags: ["boats", "speed", "time-trial"],
-    blurb: "Thread the reefs at full sail in this time-trial racer.",
-    year: 2022,
-    plays: 134700,
-    accent: "#2dd4bf",
-    glyph: "🛥️",
-    url: "#"
-  },
-  {
-    id: "maelstrom",
-    title: "Maelstrom",
-    category: "Arcade",
-    tags: ["bullet-hell", "survival", "intense"],
-    blurb: "Survive the storm of cannonfire in a spiraling bullet hell.",
-    year: 2025,
-    plays: 88200,
-    accent: "#e879f9",
-    glyph: "🌀",
-    url: "#"
   }
 ];

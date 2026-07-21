@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Pirate Games" style="color:#22190d">
+  <defs>
+    <!-- Tall Chi-Rho style P, outer silhouette only (no counter) -->
+    <path id="pSolid" d="M 34 20 L 55 20 C 66 20,73 25,73 33 C 73 41.5,66 46,54 46 L 53 46 L 53 79 C 54 84,56 85,61 85 L 61 87 L 31 87 L 31 85 C 36 85,41 84,41 79 L 41 27 C 40 23,38 21,34 21 Z"/>
+    <mask id="pCut" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <rect x="0" y="0" width="100" height="100" fill="#fff"/>
+      <use href="#pSolid" fill="#000" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+
+  <g fill="currentColor">
+    <!-- Crossbones behind: slim, lower, acute on the sides / obtuse top & bottom (32 deg) -->
+    <g mask="url(#pCut)">
+      <g transform="translate(50,61) rotate(32)">
+        <rect x="-35" y="-2.6" width="70" height="5.2" rx="2.6"/>
+        <circle cx="-35" cy="-4.2" r="5"/>
+        <circle cx="-35" cy="4.2" r="5"/>
+        <circle cx="35" cy="-4.2" r="5"/>
+        <circle cx="35" cy="4.2" r="5"/>
+      </g>
+      <g transform="translate(50,61) rotate(-32)">
+        <rect x="-35" y="-2.6" width="70" height="5.2" rx="2.6"/>
+        <circle cx="-35" cy="-4.2" r="5"/>
+        <circle cx="-35" cy="4.2" r="5"/>
+        <circle cx="35" cy="-4.2" r="5"/>
+        <circle cx="35" cy="4.2" r="5"/>
+      </g>
+    </g>
+
+    <!-- Tall Chi-Rho P in front (with counter hole) -->
+    <path fill-rule="nonzero" d="M 34 20 L 55 20 C 66 20,73 25,73 33 C 73 41.5,66 46,54 46 L 53 46 L 53 79 C 54 84,56 85,61 85 L 61 87 L 31 87 L 31 85 C 36 85,41 84,41 79 L 41 27 C 40 23,38 21,34 21 Z M 55 27 L 55 40 C 60 40,65 38,65.5 33.5 C 65 29,60 27,55 27 Z"/>
+  </g>
+</svg>

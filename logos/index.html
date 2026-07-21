@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirate Games — Logo Mockups</title>
+  <link rel="icon" type="image/svg+xml" href="../images/pirate-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #e9dcc0;
+      --paper-deep: #d9c8a4;
+      --ink: #22190d;
+      --ink-soft: #6b5638;
+      --navy: #1c3a63;
+      --card: #f2e9d5;
+      --card-edge: rgba(120, 92, 52, .35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Oxanium", sans-serif;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(120,84,40,.22), transparent 28%),
+        radial-gradient(circle at 84% 90%, rgba(96,66,30,.2), transparent 30%),
+        linear-gradient(160deg, var(--paper), var(--paper-deep));
+      background-attachment: fixed;
+      min-height: 100vh;
+      padding: clamp(24px, 5vw, 56px);
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+
+    header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      border-bottom: 2px solid var(--navy); padding-bottom: 18px; margin-bottom: 10px; }
+    header .hlogo { width: 46px; height: 46px; color: var(--ink); }
+    header h1 {
+      font-family: "Press Start 2P", monospace; font-size: clamp(14px, 3vw, 20px);
+      line-height: 1.4; text-shadow: 2px 2px 0 var(--navy);
+    }
+    header .spacer { flex: 1; }
+    .toggle {
+      font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 12px;
+      letter-spacing: .12em; text-transform: uppercase; cursor: pointer;
+      background: var(--navy); color: #fff; border: 0; padding: 11px 18px;
+    }
+    .lede { color: var(--ink-soft); font-size: 15px; margin: 16px 0 30px; max-width: 68ch; line-height: 1.55; }
+    .lede b { color: var(--ink); }
+
+    .grid {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .cell {
+      background: var(--card);
+      border: 1px solid var(--card-edge);
+      border-radius: 12px;
+      box-shadow: inset 1px 1px 0 rgba(255,250,235,.7),
+                  3px 5px 12px rgba(70,48,20,.2);
+      padding: 20px 18px 16px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .cell .stage {
+      width: 100%; aspect-ratio: 1/1; max-width: 150px;
+      display: grid; place-items: center;
+      color: var(--ink);
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    .cell svg { width: 84%; height: 84%; display: block; }
+    .cell .num {
+      font-family: "Press Start 2P", monospace; font-size: 10px; color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .cell .name { font-weight: 700; font-size: 15px; letter-spacing: .01em; }
+    .cell .meta { color: var(--ink-soft); font-size: 11.5px; margin-top: 5px; line-height: 1.5; }
+
+    /* dark mode preview */
+    body.dark {
+      --paper: #14110c; --paper-deep: #0c0a07;
+      --ink: #ece0c6; --ink-soft: #9c8a6a;
+      --card: #221c12; --card-edge: rgba(160,130,80,.28);
+    }
+    body.dark header .hlogo, body.dark .cell .stage { color: #ece0c6; }
+    footer { margin-top: 40px; padding-top: 18px; border-top: 2px solid var(--navy);
+      color: var(--ink-soft); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="hlogo" id="hdrLogo"></span>
+      <h1>LOGO MOCKS</h1>
+      <span class="spacer"></span>
+      <button class="toggle" id="toggle">Dark bg</button>
+    </header>
+    <p class="lede">
+      Ten takes on the pirate mark, built on the taller <b>Chi-Rho</b> P. The crossbones are
+      <b>shorter, lower, and cross at an acute angle</b> — narrow on the sides, wide open top and bottom —
+      leaning into the <b>steep-cross + wide-reach</b> look you liked. Toggle the background to judge each
+      as a favicon, and tell me the number.
+    </p>
+
+    <div class="grid" id="grid"></div>
+
+    <footer>pirategames · logo lab</footer>
+  </div>
+
+  <script>
+    // Constant tall Chi-Rho serif P ----------------------------------------
+    const P_SIL = "M 34 20 L 55 20 C 66 20,73 25,73 33 C 73 41.5,66 46,54 46 L 53 46 L 53 79 C 54 84,56 85,61 85 L 61 87 L 31 87 L 31 85 C 36 85,41 84,41 79 L 41 27 C 40 23,38 21,34 21 Z";
+    const P_FULL = P_SIL + " M 55 27 L 55 40 C 60 40,65 38,65.5 33.5 C 65 29,60 27,55 27 Z";
+
+    function bone(cx, cy, half, sw, r, off, angle) {
+      return `<g transform="translate(${cx},${cy}) rotate(${angle})">
+        <rect x="${-half}" y="${-sw}" width="${half*2}" height="${sw*2}" rx="${sw}"/>
+        <circle cx="${-half}" cy="${-off}" r="${r}"/>
+        <circle cx="${-half}" cy="${off}" r="${r}"/>
+        <circle cx="${half}" cy="${-off}" r="${r}"/>
+        <circle cx="${half}" cy="${off}" r="${r}"/>
+      </g>`;
+    }
+
+    // v: {cy, half, sw, r, angle, gap}  (angle = tilt from horizontal; smaller = more acute on the sides)
+    function logo(v, id) {
+      const off = +(v.r * 0.84).toFixed(2);
+      return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pirate Games">
+        <defs>
+          <mask id="cut${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+            <rect x="0" y="0" width="100" height="100" fill="#fff"/>
+            <path d="${P_SIL}" fill="#000" stroke="#000" stroke-width="${v.gap}" stroke-linejoin="round"/>
+          </mask>
+        </defs>
+        <g fill="currentColor">
+          <g mask="url(#cut${id})">
+            ${bone(50, v.cy, v.half, v.sw, v.r, off, v.angle)}
+            ${bone(50, v.cy, v.half, v.sw, v.r, off, -v.angle)}
+          </g>
+          <path fill-rule="nonzero" d="${P_FULL}"/>
+        </g>
+      </svg>`;
+    }
+
+    // The 10 variants ------------------------------------------------------
+    const VARIANTS = [
+      { name: "Steeper + Wide",  note: "narrower sides, 27°",           cy: 62, half: 36, sw: 3.3, r: 6.0, angle: 27, gap: 6.5 },
+      { name: "Steep · Slim",    note: "thinner bones — current logo",  cy: 61, half: 35, sw: 2.6, r: 5.0, angle: 32, gap: 6.0 },
+      { name: "Very acute",      note: "nearly flat sides, 23°",        cy: 63, half: 37, sw: 3.2, r: 6.0, angle: 23, gap: 6.5 },
+    ];
+
+    document.getElementById("grid").innerHTML = VARIANTS.map((v, i) => `
+      <div class="cell">
+        <div class="num">${String(i + 1).padStart(2, "0")}</div>
+        <div class="stage">${logo(v, i)}</div>
+        <div class="name">${v.name}</div>
+        <div class="meta">${v.note}</div>
+      </div>`).join("");
+
+    document.getElementById("hdrLogo").innerHTML = logo(VARIANTS[0], "hdr");
+
+    document.getElementById("toggle").addEventListener("click", (e) => {
+      document.body.classList.toggle("dark");
+      e.target.textContent = document.body.classList.contains("dark") ? "Light bg" : "Dark bg";
+    });
+  </script>
+</body>
+</html>

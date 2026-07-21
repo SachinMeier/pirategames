@@ -3,116 +3,253 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pirate Games — Style Mockups</title>
+  <title>Pirate Games</title>
+  <link rel="icon" type="image/svg+xml" href="./images/pirate-logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <link rel="icon" href="./images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0d12;
-      --panel: #12151d;
-      --ink: #e8eaf0;
-      --muted: #8a90a3;
-      --line: #232838;
-      --accent: #58e0c4;
+      --paper: #e9dcc0;
+      --paper-deep: #d9c8a4;
+      --ink: #3b2c1a;
+      --ink-soft: #6b5638;
+      --navy: #1c3a63;        /* navy blue highlight */
+      --navy-deep: #12294a;
+      --edge-light: rgba(255, 250, 235, .85);
+      --edge-dark: rgba(120, 92, 52, .45);
+      --stain: rgba(120, 84, 40, .28);
+      /* Dark mahogany wood (piratex team-card / button wood) */
+      --maho-1: #8b5a3c;
+      --maho-2: #6b4423;
+      --maho-3: #7d5130;
+      --maho-border: #5a3720;
+      --maho-text: #f6e8cc;
+      --maho-text-soft: rgba(246, 232, 204, .82);
+      --maho-gold: #f2ca6e;
+      --maho-gold-bright: #ffe08c;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: var(--bg);
       color: var(--ink);
-      font-family: "Space Grotesk", sans-serif;
+      font-family: "Oxanium", sans-serif; font-weight: 400;
+      font-size: 16px; line-height: 1.5;
       min-height: 100vh;
-      padding: clamp(24px, 6vw, 80px);
-      background-image: radial-gradient(circle at 20% 0%, rgba(88,224,196,.06), transparent 45%),
-                        radial-gradient(circle at 90% 100%, rgba(120,140,255,.06), transparent 45%);
+      padding: clamp(28px, 6vw, 72px);
+      /* Ocean sea gradient (piratex pirates theme) */
+      background: linear-gradient(135deg, #1a3d5a 0%, #2d6a7f 65%, #1e4a6b 100%);
+      background-attachment: fixed;
     }
-    .wrap { max-width: 980px; margin: 0 auto; }
-    .eyebrow {
-      font-family: "Space Mono", monospace;
-      font-size: 13px; letter-spacing: .35em; text-transform: uppercase;
-      color: var(--accent);
+
+    .wrap { max-width: 1000px; margin: 0 auto; }
+
+    /* ---- Header / logo ---- */
+    header {
+      display: flex; align-items: center; gap: 18px;
+      padding-bottom: 22px; margin-bottom: clamp(30px, 5vw, 48px);
+      border-bottom: 2px solid rgba(255, 255, 255, .22);
     }
-    h1 {
-      font-size: clamp(40px, 8vw, 88px);
-      line-height: .98; font-weight: 700; letter-spacing: -.02em;
-      margin: 18px 0 20px;
+    header .logo {
+      width: 56px; height: 56px; flex: none;
+      image-rendering: auto;
+      /* render the dark mark as white on the sea */
+      filter: brightness(0) invert(1) drop-shadow(1px 2px 1px rgba(0, 0, 0, .4));
     }
-    .lede { color: var(--muted); font-size: clamp(16px, 2vw, 19px); max-width: 60ch; line-height: 1.6; }
+    header .titles h1 {
+      font-family: "Press Start 2P", monospace; font-weight: 400;
+      font-size: clamp(16px, 4vw, 26px); line-height: 1;
+      color: #ffffff; text-shadow: 2px 2px 0 var(--navy);
+    }
+    header .titles p {
+      color: rgba(255, 255, 255, .78);
+      font-size: clamp(14px, 2vw, 16px); margin-top: 12px;
+      letter-spacing: .04em;
+    }
+
+    /* ---- Card grid ---- */
     .grid {
-      margin-top: clamp(40px, 6vw, 72px);
-      display: grid; gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      display: grid; gap: clamp(18px, 3vw, 28px);
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
-    a.card {
-      display: block; text-decoration: none; color: inherit;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 26px 24px 22px;
-      transition: transform .25s ease, border-color .25s ease, background .25s ease;
-      position: relative; overflow: hidden;
+
+    .card {
+      display: flex; flex-direction: column;
+      text-decoration: none; color: var(--maho-text);
+      /* Light mahogany: faint grain streaks + diagonal sheen over a warm wood gradient */
+      background:
+        repeating-linear-gradient(102deg,
+          rgba(74, 44, 20, .10) 0 3px, rgba(120, 80, 40, .04) 3px 8px, transparent 8px 14px),
+        radial-gradient(120% 70% at 20% 12%, rgba(255, 240, 214, .22), transparent 52%),
+        radial-gradient(90% 70% at 82% 88%, rgba(74, 44, 20, .28), transparent 55%),
+        linear-gradient(135deg, var(--maho-1) 0%, var(--maho-2) 62%, var(--maho-3) 100%);
+      border: 1.5px solid var(--maho-border);
+      border-radius: 0;
+      padding: 10px 10px 14px;
+      position: relative;
+      /* Carved wood edges + raised drop shadow */
+      box-shadow:
+        inset 0 1px 0 rgba(255, 240, 214, .28),
+        inset 0 -2px 0 rgba(43, 26, 16, .38),
+        inset 2px 0 0 rgba(255, 240, 214, .12),
+        inset -2px 0 0 rgba(43, 26, 16, .30),
+        0 10px 20px rgba(40, 24, 10, .38),
+        0 2px 0 1px rgba(43, 26, 16, .5);
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
     }
-    a.card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    a.card .num {
-      font-family: "Space Mono", monospace;
-      font-size: 13px; color: var(--muted); letter-spacing: .2em;
+    .card:hover {
+      transform: translateY(-5px);
+      background:
+        repeating-linear-gradient(102deg,
+          rgba(74, 44, 20, .10) 0 3px, rgba(120, 80, 40, .04) 3px 8px, transparent 8px 14px),
+        radial-gradient(120% 70% at 20% 12%, rgba(255, 240, 214, .22), transparent 52%),
+        radial-gradient(90% 70% at 82% 88%, rgba(74, 44, 20, .32), transparent 55%),
+        linear-gradient(135deg, #956648 0%, #744a2a 62%, #865a38 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 240, 214, .32),
+        inset 0 -2px 0 rgba(43, 26, 16, .42),
+        inset 2px 0 0 rgba(255, 240, 214, .14),
+        inset -2px 0 0 rgba(43, 26, 16, .34),
+        0 16px 30px rgba(40, 24, 10, .44),
+        0 2px 0 1px rgba(43, 26, 16, .55);
     }
-    a.card h2 { font-size: 24px; margin: 14px 0 8px; letter-spacing: -.01em; }
-    a.card p { color: var(--muted); font-size: 14px; line-height: 1.55; }
-    a.card .swatch {
-      display: flex; gap: 7px; margin-top: 18px;
+
+    /* YouTube-style dominant thumbnail */
+    .card .thumb {
+      width: 100%; aspect-ratio: 16 / 9;
+      border-radius: 0; overflow: hidden;
+      display: grid; place-items: center;
+      margin-bottom: 12px;
     }
-    a.card .swatch i { width: 22px; height: 22px; border-radius: 4px; display: block; }
-    a.card .go {
-      margin-top: 20px; font-family: "Space Mono", monospace; font-size: 13px;
-      color: var(--accent); letter-spacing: .1em;
+    .card .thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
+    .card .thumb .emoji { font-size: clamp(46px, 10vw, 66px); line-height: 1; }
+    /* emoji stand-in reads as a tinted panel recessed into the wood */
+    .card .thumb.is-emoji {
+      box-shadow: inset 0 0 0 1px rgba(43, 26, 16, .4),
+                  inset 0 2px 6px rgba(35, 20, 8, .45),
+                  inset 0 -1px 0 rgba(255, 240, 214, .12);
+    }
+
+    .card .body { flex: 1; display: flex; flex-direction: column; padding: 2px 8px 0; }
+    .card h2 {
+      font-family: "Oxanium", sans-serif; font-weight: 700;
+      font-size: 19px; letter-spacing: .01em; margin-bottom: 6px;
+      color: var(--maho-text); text-shadow: 0 1px 1px rgba(35, 20, 8, .4);
+    }
+    .card .blurb {
+      color: var(--maho-text-soft); font-size: 14px; line-height: 1.5;
+      flex: 1; margin-bottom: 16px;
+    }
+    .card .foot {
+      display: flex; align-items: center; justify-content: flex-end;
+      border-top: 1px solid rgba(255, 240, 214, .18);
+      padding-top: 12px;
+      font-size: 13px;
+    }
+    .card .play {
+      font-family: "Oxanium", sans-serif; font-weight: 700; font-size: 12px;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--maho-gold);
+      text-shadow: 0 1px 1px rgba(35, 20, 8, .4);
+    }
+    .card:hover .play { color: var(--maho-gold-bright); }
+
+    /* Coming soon */
+    .card.is-soon { cursor: default; }
+    .card.is-soon:hover {
+      transform: none;
+      background:
+        repeating-linear-gradient(102deg,
+          rgba(74, 44, 20, .10) 0 3px, rgba(120, 80, 40, .04) 3px 8px, transparent 8px 14px),
+        radial-gradient(120% 70% at 20% 12%, rgba(255, 240, 214, .22), transparent 52%),
+        radial-gradient(90% 70% at 82% 88%, rgba(74, 44, 20, .28), transparent 55%),
+        linear-gradient(135deg, var(--maho-1) 0%, var(--maho-2) 62%, var(--maho-3) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 240, 214, .28),
+        inset 0 -2px 0 rgba(43, 26, 16, .38),
+        inset 2px 0 0 rgba(255, 240, 214, .12),
+        inset -2px 0 0 rgba(43, 26, 16, .30),
+        0 10px 20px rgba(40, 24, 10, .38),
+        0 2px 0 1px rgba(43, 26, 16, .5);
+    }
+    .card.is-soon .thumb { filter: grayscale(.5) opacity(.72); }
+    .card.is-soon .play { color: var(--maho-text-soft); }
+
     footer {
-      margin-top: clamp(48px, 7vw, 90px);
-      padding-top: 22px; border-top: 1px solid var(--line);
-      color: var(--muted); font-size: 13px; font-family: "Space Mono", monospace;
-      display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between;
+      margin-top: clamp(40px, 6vw, 64px);
+      padding-top: 20px;
+      border-top: 2px solid rgba(255, 255, 255, .2);
+      color: rgba(255, 255, 255, .7); font-size: 13px; letter-spacing: .08em;
+      text-transform: uppercase; text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="eyebrow">Catalogue · Style Review</p>
-    <h1>Pirate Games</h1>
-    <p class="lede">
-      A static game catalogue for GitHub Pages — clean, fast, no server. Below are two
-      design directions for the same content. Open each, try the search and category
-      filters, and tell me which way to take it.
-    </p>
+    <header>
+      <img class="logo" src="./images/pirate-logo.svg" alt="Pirate Games" />
+      <div class="titles">
+        <h1>Pirate Games</h1>
+      </div>
+    </header>
 
-    <div class="grid">
-      <a class="card" href="./1/">
-        <span class="num">01 / DIRECTION</span>
-        <h2>Retro Arcade</h2>
-        <p>Deep-sea blue with oak-plank frames. Treasure gold, crimson and parchment — pixel roots, dialed back.</p>
-        <span class="swatch">
-          <i style="background:#0a1d38;border:1px solid #2a3350"></i><i style="background:#a06a35"></i>
-          <i style="background:#e8b54a"></i><i style="background:#c23a29"></i>
-        </span>
-        <div class="go">Enter cabinet →</div>
-      </a>
+    <div class="grid" id="grid"></div>
 
-      <a class="card" href="./2/">
-        <span class="num">02 / DIRECTION</span>
-        <h2>Ship's Helm</h2>
-        <p>Crisp sci-fi HUD with neon glow, warmed by teak panels and brass fittings. Glass over wood.</p>
-        <span class="swatch">
-          <i style="background:#22d3ee"></i><i style="background:#e8b54a"></i>
-          <i style="background:#5e3d22"></i><i style="background:#0e1726"></i>
-        </span>
-        <div class="go">Open console →</div>
-      </a>
-    </div>
-
-    <footer>
-      <span>pirategames · static site</span>
-      <span>edit the catalogue in data/games.js</span>
-    </footer>
+    <footer>Games by Sachin Meier</footer>
   </div>
+
+  <script>
+    // When viewed anywhere other than the production domain (localhost, an IP,
+    // [::], file://, …), append a timestamp to data + image URLs so file changes
+    // always show up immediately — no manual cache-busting, no stale thumbnails.
+    // On pirategames.org the URLs stay clean and browser-cacheable.
+    const PROD_HOSTS = ['pirategames.org', 'www.pirategames.org'];
+    const DEV = !PROD_HOSTS.includes(location.hostname);
+    const bust = (url) => DEV ? url + (url.includes('?') ? '&' : '?') + 't=' + Date.now() : url;
+
+    // Convert a hex accent into a soft translucent paper-friendly tint.
+    function tint(hex) {
+      const h = hex.replace('#', '');
+      const r = parseInt(h.slice(0, 2), 16);
+      const g = parseInt(h.slice(2, 4), 16);
+      const b = parseInt(h.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, 0.22)`;
+    }
+
+    function renderGames() {
+      document.getElementById('grid').innerHTML = GAMES.map(g => {
+        const soon = !!g.soon;
+        const live = !soon && g.url && g.url !== '#';
+        const tag = live ? 'a' : 'div';
+        const attrs = live ? ` href="${g.url}" target="_blank" rel="noopener"` : '';
+        const foot = soon
+          ? '<span class="play">Coming soon</span>'
+          : (live ? '<span class="play">Play &rsaquo;</span>' : '<span class="play">Ashore</span>');
+        const media = g.thumb
+          ? `<div class="thumb"><img src="${bust(g.thumb)}" alt="${g.title}" loading="lazy" /></div>`
+          : `<div class="thumb is-emoji" style="background:${tint(g.accent)}"><span class="emoji">${g.glyph}</span></div>`;
+        return `
+        <${tag} class="card${soon ? ' is-soon' : ''}"${attrs}>
+          ${media}
+          <div class="body">
+            <h2>${g.title}</h2>
+            <p class="blurb">${g.blurb}</p>
+            <div class="foot">
+              ${foot}
+            </div>
+          </div>
+        </${tag}>`;
+      }).join('');
+    }
+
+    // Load the catalogue (cache-busted in local dev), then render.
+    const s = document.createElement('script');
+    s.src = bust('data/games.js');
+    s.onload = renderGames;
+    document.head.appendChild(s);
+  </script>
 </body>
 </html>
