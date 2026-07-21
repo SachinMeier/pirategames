@@ -86,6 +86,19 @@ window.GAMES = [
     soon: true
   },
   {
+    id: "phalanx",
+    title: "Phalanx",
+    category: "Strategy",
+    tags: ["strategy", "boardgame", "tactics", "warfare", "phalanx"],
+    blurb: "Maneuver and manipulate your phalanx to victory.",
+    year: 2025,
+    plays: 0,
+    accent: "#c2410c",
+    glyph: "🛡️",
+    url: "#",
+    soon: true
+  },
+  {
     id: "geolearn",
     title: "GeoLearn",
     category: "Trivia",
