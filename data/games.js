@@ -55,8 +55,7 @@ window.GAMES = [
     accent: "#8b8cf8",
     glyph: "🚀",
     thumb: "images/games/orbit-cover.png",
-    url: "https://orbit.pirategames.org",
-    soon: true
+    url: "https://orbit.pirategames.org"
   },
   {
     id: "severance",
