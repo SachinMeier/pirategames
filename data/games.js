@@ -107,6 +107,7 @@ window.GAMES = [
     plays: 0,
     accent: "#34d399",
     glyph: "🌍",
+    thumb: "images/games/geolearn.svg",
     url: "https://gquiz.pirategames.org"
   },
   {
