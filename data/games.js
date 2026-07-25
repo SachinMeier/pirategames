@@ -58,7 +58,7 @@ window.GAMES = [
     url: "https://orbit.pirategames.org"
   },
   {
-    id: "severance",
+    id: "lumon",
     title: "Lumon",
     category: "Mystery",
     tags: ["mystery", "puzzle", "narrative", "numbers", "office"],
@@ -68,8 +68,7 @@ window.GAMES = [
     accent: "#38bdf8",
     glyph: "🔢",
     thumb: "images/games/lumon.png",
-    url: "https://severance.pirategames.org",
-    soon: true
+    url: "https://lumon.pirategames.org"
   },
   {
     id: "high-society",
