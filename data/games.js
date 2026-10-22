@@ -121,5 +121,18 @@ window.GAMES = [
     glyph: "🧠",
     thumb: "images/games/sophism.jpg",
     url: "https://sophism.pirategames.org"
+  },
+  {
+    id: "maplearn",
+    title: "MapLearn",
+    category: "Trivia",
+    tags: ["geography", "maps", "countries", "learning", "quiz"],
+    blurb: "Learn the world, one place at a time.",
+    year: 2026,
+    plays: 0,
+    accent: "#b5d7e3",
+    glyph: "🌍",
+    thumb: "images/games/maplearn.svg",
+    url: "https://maps.pirategames.org"
   }
 ];
