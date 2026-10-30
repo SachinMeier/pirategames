@@ -35,6 +35,7 @@ Open `data/games.js` and edit the `window.GAMES` array. Each entry:
 | `thumb`    | optional — path to a cover image (e.g. `images/games/foo.png`) |
 | `url`      | where the game lives (`#` until wired up)             |
 | `soon`     | optional — `true` shows "Coming soon" and disables the link |
+| `requestAccess` | optional — `true` shows "Request Access" and disables the link; visitors must ask the owner directly |
 
 `category`, `tags`, `year`, and `plays` may still be present on entries but are not shown
 by the current design. Live games open in a new tab.

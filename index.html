@@ -171,9 +171,9 @@
     }
     .card:hover .play { color: var(--maho-gold-bright); }
 
-    /* Coming soon */
-    .card.is-soon { cursor: default; }
-    .card.is-soon:hover {
+    /* Unavailable games */
+    .card.is-disabled { cursor: default; }
+    .card.is-disabled:hover {
       transform: none;
       background:
         repeating-linear-gradient(102deg,
@@ -189,8 +189,8 @@
         0 10px 20px rgba(40, 24, 10, .38),
         0 2px 0 1px rgba(43, 26, 16, .5);
     }
-    .card.is-soon .thumb { filter: opacity(.94); }
-    .card.is-soon .play { color: var(--maho-text-soft); }
+    .card.is-disabled .thumb { filter: opacity(.94); }
+    .card.is-disabled .play { color: var(--maho-text-soft); }
 
     footer {
       margin-top: clamp(40px, 6vw, 64px);
@@ -236,17 +236,20 @@
     function renderGames() {
       document.getElementById('grid').innerHTML = GAMES.map(g => {
         const soon = !!g.soon;
-        const live = !soon && g.url && g.url !== '#';
+        const requestAccess = !!g.requestAccess;
+        const live = !soon && !requestAccess && g.url && g.url !== '#';
         const tag = live ? 'a' : 'div';
-        const attrs = live ? ` href="${g.url}" target="_blank" rel="noopener"` : '';
-        const foot = soon
+        const attrs = live ? ` href="${g.url}" target="_blank" rel="noopener"` : ' aria-disabled="true"';
+        const foot = requestAccess
+          ? '<span class="play">Request Access</span>'
+          : soon
           ? '<span class="play">Coming soon</span>'
           : (live ? '<span class="play">Play &rsaquo;</span>' : '<span class="play">Ashore</span>');
         const media = g.thumb
           ? `<div class="thumb"><img src="${bust(g.thumb)}" alt="${g.title}" loading="lazy" /></div>`
           : `<div class="thumb is-emoji" style="background:${tint(g.accent)}"><span class="emoji">${g.glyph}</span></div>`;
         return `
-        <${tag} class="card${soon ? ' is-soon' : ''}"${attrs}>
+        <${tag} class="card${live ? '' : ' is-disabled'}"${attrs}>
           ${media}
           <div class="body">
             <h2>${g.title}</h2>

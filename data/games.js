@@ -15,6 +15,7 @@
  *   glyph  - emoji shown on the thumbnail (stand-in for cover art)
  *   url    - where the game lives (use "#" until it's wired up)
  *   soon   - optional; set true to show a "Coming Soon" badge and disable the link
+ *   requestAccess - optional; set true to show "Request Access" and disable the link
  */
 window.GAMES = [
   // ----- Live games -----
@@ -55,7 +56,8 @@ window.GAMES = [
     accent: "#8b8cf8",
     glyph: "🚀",
     thumb: "images/games/orbit-cover.png",
-    url: "https://orbit.pirategames.org"
+    url: "https://orbit.pirategames.org",
+    requestAccess: true
   },
   {
     id: "lumon",
@@ -68,7 +70,8 @@ window.GAMES = [
     accent: "#38bdf8",
     glyph: "🔢",
     thumb: "images/games/lumon.png",
-    url: "https://lumon.pirategames.org"
+    url: "https://lumon.pirategames.org",
+    requestAccess: true
   },
   {
     id: "high-society",
