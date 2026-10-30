@@ -132,7 +132,7 @@ window.GAMES = [
     plays: 0,
     accent: "#b5d7e3",
     glyph: "🌍",
-    thumb: "images/games/maplearn.svg",
+    thumb: "images/games/maplearn.png",
     url: "https://maps.pirategames.org"
   }
 ];
