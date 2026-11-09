@@ -109,7 +109,7 @@ window.GAMES = [
     plays: 0,
     accent: "#34d399",
     glyph: "🌍",
-    thumb: "images/games/geolearn.svg",
+    thumb: "images/games/geolearn.jpg",
     url: "https://gquiz.pirategames.org"
   },
   {
@@ -135,7 +135,7 @@ window.GAMES = [
     plays: 0,
     accent: "#b5d7e3",
     glyph: "🌍",
-    thumb: "images/games/maplearn.svg",
+    thumb: "images/games/maplearn.png",
     url: "https://maps.pirategames.org"
   }
 ];
